@@ -112,7 +112,7 @@ else 		/* senão, sou o processo filho (pid == 0) */
 		for (;;) 	/*Loop infinito*/
 		{
 			usleep(1); 	 /*Aguarda 1 milessegundo para cada repetição*/
-			malloc(100000); 	/*Alocação de memória*/
+			malloc(100000); 	/*Alocação de memória virtual*/
   	}
 	}
 }
