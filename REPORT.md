@@ -8,9 +8,9 @@ Página do repositório do trabalho ([github](https://github.com/JhonathanMilk/T
  - Discente 2 <br>
      Nome: José Luanderson Gonçalves de Souza <br>
 	 Matrícula: 18211781<br>
-	 Distribuição da nota(%): 10 <br>
+	 Distribuição da nota(%): 10 <br> 
  - Discente 3 <br>
-    Cleverton José da Silva Santos <br>
+    Nome: Cleverton José da Silva Santos <br>
     Matrícula: 18211741 <br>
     Distribuição da nota(%): 10 <br> 
 
