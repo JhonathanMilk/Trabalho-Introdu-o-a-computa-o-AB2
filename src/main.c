@@ -8,8 +8,8 @@
 void UsoDeCpu (int pid, int i) 		/*Função utilizada pelo processo pai para monitorar consumo de memória do processo filho*/
 {
 	char ucp_cmd[256];
-	sprintf(ucp_cmd, "ps axo pid,pcpu | grep %d | awk '{print $2}'", pid); 		/*Armazenando na variável os comandos shell e filtrando através de pipes para salvar somente os valores da cpu na string*/
-	/*	ou utilizar esse comando: sprintf(ucp_cmd, "ps u%d | awk '{print $3}' | grep -v CPU", pid);*/
+	sprintf(ucp_cmd, "ps u%d | awk '{print $3}' | grep -v CPU", pid); 		/*Armazenando na variável os comandos shell e filtrando através de pipes para salvar somente os valores da cpu na string*/
+	/*	ou utilizar esse comando:	sprintf(ucp_cmd, "ps axo pid,pcpu | grep %d | awk '{print $2}'", pid); */
 		char buffer[1000];
 		FILE *pipe; 			/*Ponteiro para variável do tipo arquivo*/
 		int len;
@@ -55,7 +55,7 @@ void UsoDeMem(int pid, int i)			/*Função utilizada pelo processo pai para moni
 		printf("mem_usage == %s\n", mem_usage);
 }
 
-void MatarProcesso (int pid)
+void MatarProcesso (int pid)			/*Função para matar proesso filho*/
 	{
 		char kill_process[256];		 /*Declaração de variavél para armazenar uma string*/
 		sprintf(kill_process, "kill -9 %d", pid); 	/*Concatenando comando shell a ser utilizado para matar processo + pid do processo, e armazenando a string na variável kill_process*/
@@ -78,7 +78,7 @@ if ( pid < 0 ) { 	/* se o fork não funcionou */
 }
 else if( pid > 0 ) /* se sou o processo pai*/
 {
-	if (!strcmp (argv[1], "ucp"))		/*Se argumento de execução do progama for cpu-mem*/
+	if (!strcmp (argv[1], "ucp"))		/*Se argumento de execução do progama for ucp*/
   {
 		while (i<=10)
 		{
@@ -87,7 +87,7 @@ else if( pid > 0 ) /* se sou o processo pai*/
 			i++;        /*Condição de parada incrementando +1 a cada ciclo*/
 		}
 	}
-	if (!strcmp (argv[1], "ucp-mem"))   /*Se argumento de execução do progama for cpu-mem*/
+	if (!strcmp (argv[1], "ucp-mem"))   /*Se argumento de execução do progama for ucp-mem*/
 	{
 		while (i<=10)
 		{
@@ -98,16 +98,16 @@ else if( pid > 0 ) /* se sou o processo pai*/
 		}
   }
 
-MatarProcesso (pid);
+MatarProcesso (pid);		/*Chamada da função para matar processo filho*/
 
 }
 else 		/* senão, sou o processo filho (pid == 0) */
 {
-	if (!strcmp (argv[1], "ucp"))
+	if (!strcmp (argv[1], "ucp"))		/*Se argumento de execução do progama for ucp*/
   {
 		for (;;) {}  	/*Loop infinito*/
 	}
-	if (!strcmp (argv[1], "ucp-mem"))
+	if (!strcmp (argv[1], "ucp-mem"))		/*Se argumento de execução do progama for ucp-mem*/
 	{
 		for (;;) 	/*Loop infinito*/
 		{
