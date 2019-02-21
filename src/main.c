@@ -55,7 +55,7 @@ void UsoDeMem(int pid, int i)			/*Função utilizada pelo processo pai para moni
 		printf("mem_usage == %s\n", mem_usage);
 }
 
-void MatarProcesso (int pid)			/*Função para matar proesso filho*/
+void MatarProcesso (int pid)		/*Função para matar proesso filho*/
 	{
 		char kill_process[256];		 /*Declaração de variavél para armazenar uma string*/
 		sprintf(kill_process, "kill -9 %d", pid); 	/*Concatenando comando shell a ser utilizado para matar processo + pid do processo, e armazenando a string na variável kill_process*/
