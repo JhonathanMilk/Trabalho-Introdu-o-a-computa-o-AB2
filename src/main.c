@@ -23,9 +23,9 @@ void UsoDeCpu (int pid, int i) 		/*Função utilizada pelo processo pai para mon
 		char* cpu_usage = fgets(buffer, sizeof(buffer), pipe); 		/*obtendo todos valores do arquivo, limitado num máximo do tamanho do valor do buffer(1000), e armazenando na variável buffer*/
 		len = strlen(ucp_cmd);  			/*Função strlen conta números de caracteres da string*/
 		ucp_cmd[len-1] = '\0'; 				/*Último caractere da string recebe o operador nulo*/
-		FILE *file = fopen("Main.txt", "a"); 		/*Criando arquivo para obter os dados. Finalidade: plotar um gráfico*/
-		fprintf(file, "%d ", i); 				/*Salvando o contador no arquivo Main.txt*/
-		fprintf(file, "%s", cpu_usage);				 /*Salvando o uso da ucp no arquivo Main.txt*/
+		FILE *file = fopen("bin.txt", "a"); 		/*Criando arquivo para obter os dados. Finalidade: plotar um gráfico*/
+		fprintf(file, "%d ", i); 				/*Salvando o contador no arquivo bin.txt*/
+		fprintf(file, "%s", cpu_usage);				 /*Salvando o uso da ucp no arquivo bin.txt*/
 		pclose(pipe); 			/*fechando fluxo aberto por popen*/
 		printf("cpu_usage == %s", cpu_usage); 			/*Printando resultados na tela*/
 }
@@ -47,9 +47,9 @@ void UsoDeMem(int pid, int i)			/*Função utilizada pelo processo pai para moni
 		char* mem_usage = fgets(buffer, sizeof(buffer), pipe);
 		len = strlen(mem_cmd);
 		mem_cmd[len-1] = '\0';
-		FILE *file = fopen("Main2.txt", "a"); 		/*Criando arquivo para obter os dados. Finalidade: plotar um gráfico*/
-		fprintf(file, "%d ", i);  	/*Salvando o contador no arquivo Main2.txt*/
-		fprintf(file, "%s", mem_usage); 		/*Salvando o uso de memória no arquivo Main2.txt*/
+		FILE *file = fopen("bin2.txt", "a"); 		/*Criando arquivo para obter os dados. Finalidade: plotar um gráfico*/
+		fprintf(file, "%d ", i);  	/*Salvando o contador no arquivo bin2.txt*/
+		fprintf(file, "%s", mem_usage); 		/*Salvando o uso de memória no arquivo bin2.txt*/
 		pclose(pipe);
 
 		printf("mem_usage == %s\n", mem_usage);
@@ -67,8 +67,8 @@ int main (int argc, char *argv[], char *envp[]) {
 int pid ; 	 /* identificador de processo */
 int i=1; 		/*Declaração da condição de parada*/
 
-system ("rm -rvf Main.txt >/dev/null");  /*Apagando arquivo Main.txt, caso já houver na pasta que o progama está sendo executado + ocultando saída no terminal*/
-system ("rm -rvf Main2.txt >/dev/null");  /*Apagando arquivo Main2.txt, caso já houver na pasta que o progama está sendo executado + ocultando saída no terminal*/
+system ("rm -rvf bin.txt >/dev/null");  /*Apagando arquivo bin.txt, caso já houver na pasta que o progama está sendo executado + ocultando saída no terminal*/
+system ("rm -rvf bin2.txt >/dev/null");  /*Apagando arquivo bin2.txt, caso já houver na pasta que o progama está sendo executado + ocultando saída no terminal*/
 
 pid = fork () ; 	/* replicação do processo */
 
